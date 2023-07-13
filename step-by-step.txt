@@ -1,0 +1,36 @@
+1) Enable respective APIs 
+gcloud services enable compute.googleapis.com --project=project-id
+gcloud services enable cloudresourcemanager.googleapis.com --project=project-id
+gcloud services enable container.googleapis.com --project=project-id
+gcloud services enable cloudkms.googleapis.com --project=project-id
+gcloud services enable iam.googleapis.com --project=project-id
+gcloud services enable appengine.googleapis.com --project=project-id
+gcloud services enable bigquery.googleapis.com --project=project-id
+gcloud services enable admin.googleapis.com --project=project-id
+gcloud services enable cloudfunctions.googleapis.com --project=project-id
+gcloud services enable sqladmin.googleapis.com --project=project-id
+gcloud services enable bigtableadmin.googleapis.com --project=project-id
+gcloud services enable pubsub.googleapis.com --project=project-id
+gcloud services enable redis.googleapis.com --project=project-id
+gcloud services enable serviceusage.googleapis.com --project=project-id
+gcloud services enable file.googleapis.com --project=project-id
+gcloud services enable apikeys.googleapis.com --project=project-id
+gcloud services enable logging.googleapis.com --project=project-id
+gcloud services enable dns.googleapis.com --project=project-id
+gcloud services enable cloudasset.googleapis.com --project=project-id
+gcloud services enable essentialcontacts.googleapis.com --project=project-id
+gcloud services enable accessapproval.googleapis.com --project=project-id
+
+
+2) Create Service Account
+gcloud iam service-accounts create CloudGuard-Connect --project=project-id
+
+3) Add IAM Policies and Policy Bindings
+gcloud projects add-iam-policy-binding project-id --member serviceAccount:CloudGuard-Connect@project-id.iam.gserviceaccount.com --role roles/viewer
+gcloud projects add-iam-policy-binding project-id --member serviceAccount:CloudGuard-Connect@project-id.iam.gserviceaccount.com --role roles/iam.securityReviewer
+gcloud projects add-iam-policy-binding project-id --member serviceAccount:CloudGuard-Connect@project-id.iam.gserviceaccount.com --role roles/cloudasset.viewer
+
+4) Create Keys for the Service Account 
+gcloud iam service-accounts keys create ~/key.json --iam-account CloudGuard-Connect@project-id.iam.gserviceaccount.com --project=project-id
+
+5) The Json file from the last step needs to be added to our CSPM then 
